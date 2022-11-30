@@ -53,7 +53,7 @@ public class TypeConverterFactory {
         } else if (jsonSchema instanceof NumberSchema) {
             // If no connect type passed then assume that connect schema is for FLOAT64 type data
             JSONObject parsedSchema = new JSONObject(jsonSchema.toString());
-            if (parsedSchema.get("type") == "integer") {
+            if (parsedSchema.get("type").equals("integer")) {
                 typeConverter = get(Schema.Type.INT64);
             } else if (connectType == null) {
                 typeConverter = get(Schema.Type.valueOf("FLOAT64"));
