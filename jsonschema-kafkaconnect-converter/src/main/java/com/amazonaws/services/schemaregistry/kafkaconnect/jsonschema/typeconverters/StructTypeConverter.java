@@ -316,8 +316,9 @@ public class StructTypeConverter implements TypeConverter {
 
             for (Map.Entry<String, org.everit.json.schema.Schema> property : sortedPropertiesByIndex.entrySet()) {
                 String subFieldName = property.getKey();
+                boolean required = objectSchema.getRequiredProperties().contains(subFieldName);
                 org.everit.json.schema.Schema subSchema = property.getValue();
-                builder.field(subFieldName, jsonSchemaToConnectSchemaConverter.toConnectSchema(subSchema, true));
+                builder.field(subFieldName, jsonSchemaToConnectSchemaConverter.toConnectSchema(subSchema, required));
             }
 
             return builder;
